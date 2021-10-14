@@ -111,18 +111,23 @@ class ListViewController: UICollectionViewController {
         shouldShowLoader = true
 
         var pokemons: [Pokemon] = []
-
-        // TODO: Wait for all requests to finish before updating the collection view
+        let requestsGroup = DispatchGroup()
 
         PokeAPI.shared.get(url: "pokemon?limit=30", onCompletion: { (list: PokemonList?, _) in
             guard let list = list else { return }
             list.results.forEach { result in
+                requestsGroup.enter()
+
                 PokeAPI.shared.get(url: "/pokemon/\(result.id)/", onCompletion: { (pokemon: Pokemon?, _) in
                     guard let pokemon = pokemon else { return }
                     pokemons.append(pokemon)
                     self.pokemons = pokemons
-                    self.didRefresh()
+                    requestsGroup.leave()
                 })
+            }
+            
+            requestsGroup.notify(queue: .main) {
+                self.didRefresh()
             }
         })
     }
