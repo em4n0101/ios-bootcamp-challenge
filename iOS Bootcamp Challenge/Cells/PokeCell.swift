@@ -141,7 +141,7 @@ class PokeCell: UICollectionViewCell {
 
             for type in pokemon.types ?? [] {
                 let last = typesContainer.subviews.last
-                let view = createTypeLabel(name: type)
+                let view = createTypeLabel(name: type.type.name)
                 typesContainer.addSubview(view)
 
                 if let last = last {

@@ -27,13 +27,45 @@ enum PokemonType: String, Decodable, CaseIterable, Identifiable {
 
 }
 
+struct Abilities: Decodable {
+    let ability: Ability
+    
+    enum CodingKeys: String, CodingKey {
+        case ability
+    }
+}
+
+struct Ability: Decodable {
+    let name: String
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+    }
+}
+
+struct Types: Decodable {
+    let type: Type
+    
+    enum CodingKeys: String, CodingKey {
+        case type
+    }
+}
+
+struct Type: Decodable {
+    let name: String
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+    }
+}
+
 struct Pokemon: Decodable, Equatable {
 
     let id: Int
     let name: String
     let image: String?
-    let types: [String]?
-    let abilities: [String]?
+    let types: [Types]?
+    let abilities: [Abilities]?
     let weight: Float
     let baseExperience: Int
 
@@ -61,16 +93,16 @@ struct Pokemon: Decodable, Equatable {
         let other = try sprites.nestedContainer(keyedBy: CodingKeys.self, forKey: .other)
         let officialArtWork = try other.nestedContainer(keyedBy: CodingKeys.self, forKey: .officialArtwork)
         self.image = try? officialArtWork.decode(String.self, forKey: .frontDefault)
-
-        // TODO: Decode list of types & abilities
-
-        self.types = []
-        self.abilities = []
+        self.types = try container.decode([Types].self, forKey: .types)
+        self.abilities = try container.decode([Abilities].self, forKey: .abilities)
 
         self.weight = try container.decode(Float.self, forKey: .weight)
         self.baseExperience = try container.decode(Int.self, forKey: .baseExperience)
     }
-
+    
+    static func == (lhs: Pokemon, rhs: Pokemon) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 extension Pokemon {
@@ -81,13 +113,13 @@ extension Pokemon {
 
     func primaryType() -> String? {
         guard let primary = types?.first else { return nil }
-        return primary.capitalized
+        return primary.type.name.capitalized
     }
 
     func secondaryType() -> String? {
         let index = 1
         guard index < types?.count ?? 0 else { return nil }
-        return types?[index].capitalized
+        return types?[index].type.name.capitalized
     }
 
 }
