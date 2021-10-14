@@ -24,10 +24,21 @@ class ListViewController: UICollectionViewController {
     }()
 
     private var isFirstLauch: Bool = true
-
-    // TODO: Add a loading indicator when the app first launches and has no pokemons
-
-    private var shouldShowLoader: Bool = true
+    private let loadingIndicator = SpinnerViewController()
+    private var shouldShowLoader: Bool = true {
+        didSet {
+            if shouldShowLoader {
+                addChild(loadingIndicator)
+                loadingIndicator.view.frame = view.frame
+                view.addSubview(loadingIndicator.view)
+                loadingIndicator.didMove(toParent: self)
+            } else {
+                self.loadingIndicator.willMove(toParent: nil)
+                self.loadingIndicator.view.removeFromSuperview()
+                self.loadingIndicator.removeFromParent()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,7 +128,9 @@ class ListViewController: UICollectionViewController {
     // MARK: - UI Hooks
 
     @objc func refresh() {
-        shouldShowLoader = true
+        if isFirstLauch {
+            shouldShowLoader = true
+        }
 
         var pokemons: [Pokemon] = []
         let requestsGroup = DispatchGroup()
@@ -143,7 +156,8 @@ class ListViewController: UICollectionViewController {
 
     private func didRefresh() {
         shouldShowLoader = false
-
+        isFirstLauch = false
+        
         guard
             let collectionView = collectionView,
             let refreshControl = collectionView.refreshControl

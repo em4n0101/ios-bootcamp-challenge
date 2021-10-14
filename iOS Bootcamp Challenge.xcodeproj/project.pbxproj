@@ -13,6 +13,7 @@
 		3C5634752703A68600EB996C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5634742703A68600EB996C /* Item.swift */; };
 		3C5634772703B4A500EB996C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5634762703B4A500EB996C /* Card.swift */; };
 		3C56348027041BBB00EB996C /* UserDefaults+CustomKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56347F27041BBB00EB996C /* UserDefaults+CustomKeys.swift */; };
+		4DAFDEE727180EBE0035226A /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAFDEE627180EBE0035226A /* SpinnerViewController.swift */; };
 		C36BFB582700DCCE00F8CCAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36BFB572700DCCE00F8CCAC /* AppDelegate.swift */; };
 		C36BFB5A2700DCCE00F8CCAC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36BFB592700DCCE00F8CCAC /* SceneDelegate.swift */; };
 		C36BFB5F2700DCCE00F8CCAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C36BFB5D2700DCCE00F8CCAC /* Main.storyboard */; };
@@ -59,6 +60,7 @@
 		3C5634742703A68600EB996C /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		3C5634762703B4A500EB996C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		3C56347F27041BBB00EB996C /* UserDefaults+CustomKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+CustomKeys.swift"; sourceTree = "<group>"; };
+		4DAFDEE627180EBE0035226A /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		C36BFB542700DCCE00F8CCAC /* iOS Bootcamp Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Bootcamp Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C36BFB572700DCCE00F8CCAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C36BFB592700DCCE00F8CCAC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 			children = (
 				C36BFB8C2700E6AE00F8CCAC /* ListViewController.swift */,
 				C36BFB992700F1CE00F8CCAC /* DetailViewController.swift */,
+				4DAFDEE627180EBE0035226A /* SpinnerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				C36BFB952700EDD900F8CCAC /* ColumnFlowLayout.swift in Sources */,
 				C3C4F9182702D65300136BFB /* PokemonList.swift in Sources */,
 				C36BFB622700DCCE00F8CCAC /* iOS_Bootcamp_Challenge.xcdatamodeld in Sources */,
+				4DAFDEE727180EBE0035226A /* SpinnerViewController.swift in Sources */,
 				C36BFB9E270102C900F8CCAC /* PokeAPI.swift in Sources */,
 				3C563471270397F300EB996C /* CardView.swift in Sources */,
 				C36BFB8B2700E14000F8CCAC /* Networking.swift in Sources */,
