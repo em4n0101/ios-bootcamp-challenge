@@ -100,11 +100,22 @@ class ListViewController: UICollectionViewController {
         cell.pokemon = resultPokemons[indexPath.item]
         return cell
     }
-
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        performSegue(withIdentifier: DetailViewController.segueIdentifier, sender: cell)
+    }
+    
     // MARK: - Navigation
-
-    // TODO: Handle navigation to detail view controller
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == DetailViewController.segueIdentifier {
+            let detailVC = segue.destination as! DetailViewController
+            let cell = sender as? PokeCell
+            detailVC.pokemon = cell?.pokemon
+        }
+    }
+    
     // MARK: - UI Hooks
 
     @objc func refresh() {
