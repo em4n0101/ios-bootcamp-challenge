@@ -115,6 +115,13 @@ class ListViewController: UICollectionViewController {
         performSegue(withIdentifier: DetailViewController.segueIdentifier, sender: cell)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        cell.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+           UIView.animate(withDuration: 0.4) {
+               cell.transform = CGAffineTransform.identity
+           }
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
